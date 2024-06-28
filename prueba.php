@@ -40,4 +40,33 @@
     foreach ($destinos as $destino) {
         echo "Destino: " . $destino["destino"] . ", País: " . $destino["país"] . ", Precio: $" . $destino["precio"] . ", Duración: " . $destino["duración"] . " días\n";
     }
+
+    function buscarDestinoPorNombre($nombreDestino) {
+        $destinos = obtenerDestinos();
+    
+        foreach ($destinos as $destino) {
+            if (strcasecmp($destino["destino"], $nombreDestino) == 0) {
+                return $destino;
+            }
+        }
+    
+        return "Destino no encontrado";
+    }
+    
+    $destinos = obtenerDestinos();
+    foreach ($destinos as $destino) {
+        echo "Destino: " . $destino["destino"] . ", País: " . $destino["país"] . ", Precio: $" . $destino["precio"] . ", Duración: " . $destino["duración"] . " días\n";
+    }
+    
+    echo "\n";
+    
+    $nombreDestino = "Tokio";
+    $resultado = buscarDestinoPorNombre($nombreDestino);
+    
+    if (is_array($resultado)) {
+        echo "Destino encontrado: ";
+        echo "Destino: " . $resultado["destino"] . ", País: " . $resultado["país"] . ", Precio: $" . $resultado["precio"] . ", Duración: " . $resultado["duración"] . " días\n";
+    } else {
+        echo $resultado . "\n";
+    }
 ?>
